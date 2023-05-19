@@ -57,7 +57,7 @@ export default function Login(props) {
             user_ref: response.data[0]._id,
           });
           setDisplayImage(() => response.data[0].img);
-          navigate("/log");
+          navigate("/profile");
         } else {
           alert("ID or PWD is wrong!");
         }

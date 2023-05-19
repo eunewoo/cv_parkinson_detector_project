@@ -14,8 +14,8 @@ export function makeFormData(e) {
 
   const formData = new FormData();
   formData.append("file", img);
-  formData.append("api_key", "672365852293431");
-  formData.append("upload_preset", "tdc1f5a8");
+  formData.append("api_key", "276775976593738");
+  formData.append("upload_preset", "h0iblbf5");
   formData.append("timestamp", (Date.now() / 1000) | 0);
   const config = {
     headers: { "Content-Type": "multipart/form-data" },

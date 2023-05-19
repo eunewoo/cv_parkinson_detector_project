@@ -1,6 +1,6 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
-import Topnav from "./nav";
+// import Topnav from "./nav";
 import { hashutil } from "./hashutil.mjs";
 import { useRef } from "react";
 
@@ -32,7 +32,7 @@ export default function Profile(props) {
     setTempConfig(config);
 
     Axios.post(
-      "https://api.cloudinary.com/v1_1/dl1bnuva1/image/upload",
+      "https://api.cloudinary.com/v1_1/dv2sy5qzq/image/upload",
       formData,
       config
     ).then((res) => {
@@ -108,13 +108,13 @@ export default function Profile(props) {
 
   return (
     <div id="profileWrapper">
-      <Topnav />
+      {/* <Topnav /> */}
       <form id="profileFormWrapper">
-        <p>Edit Profile</p>
+        <p>Dr.Parkinson</p>
         <div id="profileContent">
-          <p id="profileContentTitle">Profile Photo</p>
+          <p id="profileContentTitle">Facial Test</p>
           <div id="profileUserInfo">
-            <img key={imageKeyRef} src={displayImage} alt="profile" />
+            {/* <img key={imageKeyRef} src={displayImage} alt="profile" /> */}
             <button
               id="profileImageSelector"
               type="button"
@@ -122,7 +122,7 @@ export default function Profile(props) {
               data-toggle="modal"
               data-target="#exampleModal"
             >
-              Choose new Image
+              Upload Image
             </button>
             <div
               class="modal fade"
@@ -167,16 +167,81 @@ export default function Profile(props) {
               </div>
             </div>
 
-            <button
+            {/* <button
               id="profileImageRemover"
               type="button"
               onClick={removeImage}
             >
               Remove image
-            </button>
+            </button> */}
           </div>
         </div>
         <div id="profileContent">
+          <p id="profileContentTitle">Posture Test</p>
+          <div id="profileUserInfo">
+            {/* <img key={imageKeyRef} src={displayImage} alt="profile" /> */}
+            <button
+              id="profileImageSelector"
+              type="button"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModal"
+            >
+              Upload video
+            </button>
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      class="close"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Set your profile image : </p>
+                    <input type="file" onChange={setImage} />
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <button
+              id="profileImageRemover"
+              type="button"
+              onClick={removeImage}
+            >
+              Remove image
+            </button> */}
+          </div>
+        </div>
+        {/* <div id="profileContent">
           <label id="profileContentTitle" htmlFor="name">
             Name
           </label>
@@ -212,10 +277,10 @@ export default function Profile(props) {
             defaultValue={props.profile.address2}
             onChange={setAddress2f}
           ></input>
-        </div>
+        </div> */}
         <div id="profileButtonWrapper">
           <button id="profileSubmit" type="button" onClick={saveProfile}>
-            Save
+            Detect
           </button>
           <button id="profileLogout" type="button" onClick={logout}>
             Logout
