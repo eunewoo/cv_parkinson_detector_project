@@ -145,7 +145,7 @@ export default function Register(props) {
                       }).then(() => {
                         setDisplayImage(res.data.url);
                         alert("Success Register!");
-                        document.location.href = "https://diary30woo.web.app/";
+                        document.location.href = "http://localhost:3000/";
                       });
                     });
                   }
@@ -161,7 +161,7 @@ export default function Register(props) {
                     }).then(() => {
                       setDisplayImage(profdata.img);
                       alert("Success Register!");
-                      document.location.href = "https://diary30woo.web.app/";
+                      document.location.href = "http://localhost:3000/";
                     });
                   }
                 } else if (temp === 0) {

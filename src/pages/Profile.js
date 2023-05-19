@@ -63,7 +63,7 @@ export default function Profile(props) {
   //log out and locate to main page
   const logout = () => {
     props.changeProfile({});
-    document.location.href = "https://diary30woo.web.app/";
+    document.location.href = "http://localhost:3000/";
   };
   const saveProfile = (e) => {
     //it should fetch and change
