@@ -10,10 +10,10 @@ export const DisplayImageAtom = atom({
 
 // make cloudinary form for Register.js and Profile.js
 export function makeFormData(e) {
-  const img = e.target.files[0];
+  const file = e.target.files[0];
 
   const formData = new FormData();
-  formData.append("file", img);
+  formData.append("file", file);
   formData.append("api_key", "276775976593738");
   formData.append("upload_preset", "h0iblbf5");
   formData.append("timestamp", (Date.now() / 1000) | 0);
