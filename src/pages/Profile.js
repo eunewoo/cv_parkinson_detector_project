@@ -38,12 +38,12 @@ export default function Profile(props) {
       formData,
       config
     ).then((res) => {
-      console.log('file link', res.data.url);
       if (endpoint == 'image/upload') {
         setEndpoint('video/upload');
       } else {
         setEndpoint('image/upload');
       }
+      console.log('file link', res.data.url);
     });
   };
 
