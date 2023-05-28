@@ -1,0 +1,13 @@
+Input:samples/mySample/surpriseMe.mov
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/samples/mySample/surpriseMe.mov
+Camera parameters:1195.31,1195.31,810,540
+Output HOG:surpriseMe.hog
+Output video:surpriseMe.avi
+Output aligned directory:surpriseMe_aligned
+Output csv:surpriseMe.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1

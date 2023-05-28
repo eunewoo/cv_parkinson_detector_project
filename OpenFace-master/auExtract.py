@@ -2,10 +2,10 @@ import csv
 import statistics
 
 # Define the AUs of interest
-aus = [1, 6, 12]
+aus = [1, 2, 4]
 
 # Load the OpenFace output file into a list of dictionaries
-with open('processed/sampleMe.csv', 'r') as f:
+with open('processed/surpriseMe.csv', 'r') as f:
     reader = csv.DictReader(f)
     data = list(reader)
 

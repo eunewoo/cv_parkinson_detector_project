@@ -1,0 +1,13 @@
+Input:samples/mySample/smileMe.mov
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/samples/mySample/smileMe.mov
+Camera parameters:1195.31,1195.31,810,540
+Output HOG:smileMe.hog
+Output video:smileMe.avi
+Output aligned directory:smileMe_aligned
+Output csv:smileMe.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1
