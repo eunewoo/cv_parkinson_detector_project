@@ -1,0 +1,13 @@
+Input:/Users/eunewoo/Desktop/mySample/disgustMe.mov
+Input full path:/Users/eunewoo/Desktop/mySample/disgustMe.mov
+Camera parameters:1195.31,1195.31,810,540
+Output HOG:disgusted.hog
+Output video:disgusted.avi
+Output aligned directory:disgusted_aligned
+Output csv:disgusted.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1
