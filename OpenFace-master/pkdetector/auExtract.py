@@ -39,6 +39,8 @@ for i in range(3):
         active_frames = [float(row[au_r]) for row in data if float(row[au_c]) == 1]
 
         # Calculate the variance of the raw AU value for these frames, if there are any
-        if active_frames:
+        if len(active_frames) > 1:
             variance = statistics.variance(active_frames)
-            print(f"The variance of {au_r} when active in {output_files[i]} is {variance}")
+            print(f"The variance of {au_r} when active is {variance}")
+        else:
+            print(f"The variance of {au_r} when active is 0")

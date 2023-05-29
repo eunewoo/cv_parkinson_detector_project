@@ -1,5 +1,5 @@
-Input:/Users/eunewoo/Desktop/mySample/surpriseMe.mov
-Input full path:/Users/eunewoo/Desktop/mySample/surpriseMe.mov
+Input:mySample/surpriseMe.mov
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/mySample/surpriseMe.mov
 Camera parameters:1195.31,1195.31,810,540
 Output HOG:surprised.hog
 Output video:surprised.avi
