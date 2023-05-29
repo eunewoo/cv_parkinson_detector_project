@@ -63,8 +63,6 @@ sensitivity = tp / float(tp + fn)
 specificity = tn / float(tn + fp)
 
 print(f"Accuracy: {acc:.4f}")
-# print(f"Sensitivity: {sensitivity:.4f}")
-# print(f"Specificity: {specificity:.4f}")
 
 testingPaths = list(paths.list_images(testingPath))
 idxs = np.random.choice(np.arange(0, len(testingPaths)), size=(25,), replace=False)
@@ -91,7 +89,22 @@ for i in idxs:
 
 montage = build_montages(images, (128, 128), (5, 5))[0]
 
-cv2.imshow("Output", montage)
-cv2.waitKey(0)
+new_image_path = 'dataset/spiral/testing/parkinson/V01PE01.png'
+
+print("[INFO] loading and preprocessing new image...")
+
+new_image = cv2.imread(new_image_path)
+new_image = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)
+new_image = cv2.resize(new_image, (200, 200))
+new_image = cv2.threshold(new_image, 0, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)[1]
+
+new_features = quantify_image(new_image)
+
+print("[INFO] predicting for new image...")
+new_preds = model.predict([new_features])
+new_label = le.inverse_transform(new_preds)[0]
+
+print("The predicted label for the new image is: ", new_label)
+
 
 
