@@ -48,6 +48,14 @@ print("[INFO] training model...")
 model = RandomForestClassifier(n_estimators=100)
 model.fit(trainX, trainY)
 
+# Evaluate the model
+print("[INFO] evaluating model...")
+predictions = model.predict(testX)
+cm = confusion_matrix(testY, predictions).flatten()
+(tn, fp, fn, tp) = cm
+acc = (tp + tn) / float(cm.sum())
+print(f"Accuracy: {acc:.4f}")
+
 # Load the new image and make the prediction
 new_image_path = 'dataset/spiral/testing/parkinson/V01PE01.png'
 print("[INFO] loading and preprocessing new image...")
