@@ -9,11 +9,7 @@ import subprocess
 clf = joblib.load('model.pkl')
 
 # Ask for video file input
-video_files = []
-
-for _ in range(3):
-    filename = input('Please enter 3 facial expression video in order (smile, disgusted, surprised) : ')
-    video_files.append(filename)
+video_files = ["sampleFront/uploads/smileMe.webm", "sampleFront/uploads/disgustMe.webm", "sampleFront/uploads/surpriseMe.webm"]
 
 # Define the AUs of interest
 aus_smile = [1, 6, 12]

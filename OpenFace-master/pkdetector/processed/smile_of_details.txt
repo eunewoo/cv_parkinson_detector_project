@@ -1,5 +1,5 @@
-Input:mySample/smileMe.webm
-Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/mySample/smileMe.webm
+Input:sampleFront/uploads/smileMe.webm
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/smileMe.webm
 Camera parameters:500,500,320,240
 Output HOG:smile.hog
 Output video:smile.avi

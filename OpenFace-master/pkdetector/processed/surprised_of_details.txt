@@ -1,5 +1,5 @@
-Input:mySample/surpriseMe.webm
-Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/mySample/surpriseMe.webm
+Input:sampleFront/uploads/surpriseMe.webm
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm
 Camera parameters:500,500,320,240
 Output HOG:surprised.hog
 Output video:surprised.avi
