@@ -2,6 +2,7 @@
 import numpy as np
 import cv2
 import os
+import argparse
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import confusion_matrix
@@ -33,8 +34,8 @@ def load_split(path):
 
     return (np.array(data), np.array(labels))
 
-trainingPath = 'dataset/spiral/training/'
-testingPath = 'dataset/spiral/testing/'
+trainingPath = 'detect-parkinsons-master/dataset/spiral/training/'
+testingPath = 'detect-parkinsons-master/dataset/spiral/testing/'
 
 print("[INFO] loading data...")
 (trainX, trainY) = load_split(trainingPath)
@@ -57,7 +58,7 @@ acc = (tp + tn) / float(cm.sum())
 print(f"Accuracy: {acc:.4f}")
 
 # Load the new image and make the prediction
-new_image_path = 'dataset/spiral/testing/parkinson/V01PE01.png'
+new_image_path = input("Please enter the path of the new image: ")
 print("[INFO] loading and preprocessing new image...")
 new_image = cv2.imread(new_image_path)
 new_image = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)
