@@ -1,0 +1,90 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        text-align: center;
+      }
+
+      #title {
+        margin-top: 20px;
+        font-size: 36px;
+      }
+
+      #title2 {
+        margin-top: 20px;
+        font-size: 36px;
+        font-size: 30px;
+      }
+
+      .container {
+        margin: 50px auto;
+        width: 400px;
+        height: 250px;
+        border: 1px solid black;
+        border-radius: 20px; /* Added border-radius for rounded corners */
+        position: relative;
+        background-color: orange;
+      }
+
+      .container button {
+        position: absolute;
+        padding: 10px;
+        font-size: 20px;
+        border-radius: 10px;
+      }
+
+      .container #capture-btn {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: yellow;
+      }
+
+      .container #detect-btn {
+        bottom: 20px;
+        right: 20px;
+        background-color: red; /* Added background color */
+      }
+
+      .container #capture-btn-2 {
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: yellow;
+      }
+
+      .container #detect-btn-2 {
+        bottom: 20px;
+        right: 20px;
+        background-color: red; /* Added background color */
+      }
+
+      /* video {
+        display: none;
+      } */
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Dr.Parkinson</h1>
+
+    <div class="container">
+      <p id="title2">Show your smile, disgusted, surprised face</p>
+      <button id="capture-btn">Shoot face video</button>
+      <button id="detect-btn">Detect</button>
+    </div>
+
+    <video id="video" autoplay muted></video>
+
+    <div class="container">
+      <p1 id="title2">Show your drawing of spiral image on white paper</p1>
+      <button id="capture-btn-2">Snap spiral picture</button>
+      <button id="detect-btn-2">Detect</button>
+    </div>
+
+    
+
+    <script src="app.js"></script>
+  </body>
+</html>
