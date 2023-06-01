@@ -25,7 +25,7 @@
         border: 1px solid black;
         border-radius: 20px; /* Added border-radius for rounded corners */
         position: relative;
-        background-color: orange;
+        background-color: #cfd9e0;
       }
 
       .container button {
@@ -39,26 +39,26 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-color: yellow;
+        background-color: #fcb270;
       }
 
       .container #detect-btn {
         bottom: 20px;
         right: 20px;
-        background-color: red; /* Added background color */
+        background-color: #fcb270; /* Added background color */
       }
 
       .container #capture-btn-2 {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        background-color: yellow;
+        background-color: #fcb270;
       }
 
       .container #detect-btn-2 {
         bottom: 20px;
         right: 20px;
-        background-color: red; /* Added background color */
+        background-color: #fcb270; /* Added background color */
       }
 
       /* video {
@@ -74,19 +74,14 @@
       <button id="capture-btn">Shoot face video</button>
       <button id="detect-btn">Detect</button>
     </div>
-
     <video id="video" autoplay muted></video>
-
     <div class="container">
-      <p id="title2">Show your drawing of spiral image on white paper</p>
-      <button id="capture-btn-2">Snap spiral picture</button>
-      <button id="detect-btn-2">Detect</button>
-      <canvas id="canvas" width="640" height="480"></canvas>
-      <img id="photo" alt="photo will appear here after snap">
+        <p id="title2">Show your drawing of spiral image on white paper</p>
+        <button id="capture-btn-2">Snap spiral picture</button>
+        <button id="detect-btn-2">Detect</button>
+        <!-- <img id="photo" alt="photo will appear here after snap"> -->
     </div>
-  
-
-    
+    <canvas id="canvas" width="500" height="500"></canvas>
 
     <script src="app.js"></script>
   </body>

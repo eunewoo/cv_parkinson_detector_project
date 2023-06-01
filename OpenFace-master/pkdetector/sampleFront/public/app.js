@@ -11,6 +11,15 @@ const videoNames = ['smileMe', 'disgustMe', 'surpriseMe'];
 const detectButton = document.querySelector('#detect-btn');
 const detectButton2 = document.querySelector('#detect-btn-2');
 
+function blobToDataURL(blob) {
+  return new Promise((fulfill, reject) => {
+      let reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = (e) => fulfill(reader.result);
+      reader.readAsDataURL(blob);
+  });
+}
+
 detectButton.addEventListener('click', () => {
   fetch('/run-python', {
     method: 'POST'
@@ -74,21 +83,26 @@ captureButton.addEventListener('click', async () => {
 captureButton2.addEventListener('click', async () => {
   const stream = await navigator.mediaDevices.getUserMedia({video: true});
   video.srcObject = stream;
+
+  await new Promise(resolve => setTimeout(resolve, 5000)); // wait 5 seconds
+
+  const canvas = document.querySelector('canvas');
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+  
+  canvas.toBlob(blob => {
+    const formData = new FormData();
+    formData.append('image', blob, 'spiralMe.png');
 
-  canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-  const imgData = canvas.toDataURL('image/png');
-  const imgBlob = fetch(imgData).then(response => response.blob());
-
-  const formData = new FormData();
-  formData.append('image', await imgBlob, 'spiralImage.png');
-
-  fetch('/save-image', {
-    method: 'POST',
-    body: formData
-  });
-
-  video.srcObject.getTracks()[0].stop();
+    fetch('/save-image', {
+      method: 'POST',
+      body: formData
+    });
+  }, 'image/png');
+  
+  video.srcObject.getTracks().forEach(track => track.stop());
 });
+
+
 
