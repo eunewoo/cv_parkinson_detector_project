@@ -6,6 +6,17 @@ const captureButton = document.querySelector('#capture-btn');
 const video = document.querySelector('video');
 
 const videoNames = ['smileMe', 'disgustMe', 'surpriseMe'];
+const detectButton = document.querySelector('#detect-btn');
+
+detectButton.addEventListener('click', () => {
+  fetch('/run-python', {
+    method: 'POST'
+  })
+  .then(response => response.text())
+  .then(data => alert(data)) // Display the result as an alert
+  .catch(error => console.error('Error:', error));
+});
+
 let videoIndex = 0;
 
 captureButton.addEventListener('click', async () => {

@@ -4,12 +4,15 @@ from sklearn.preprocessing import StandardScaler
 import csv
 import statistics
 import subprocess
+import pandas as pd
+import json
+import sys
 
 # Load the saved model
-clf = joblib.load('model.pkl')
+clf = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/model.pkl')
 
 # Ask for video file input
-video_files = ["sampleFront/uploads/smileMe.webm", "sampleFront/uploads/disgustMe.webm", "sampleFront/uploads/surpriseMe.webm"]
+video_files = ["uploads/smileMe.webm", "uploads/disgustMe.webm", "uploads/surpriseMe.webm"]
 
 # Define the AUs of interest
 aus_smile = [1, 6, 12]
@@ -21,11 +24,11 @@ output_files = ['smile.csv', 'disgusted.csv', 'surprised.csv']
 # Run the FeatureExtraction command for each video
 variances = []
 for i in range(3):
-    command = f"../build/bin/FeatureExtraction -f {video_files[i]} -of {output_files[i]}"
+    command = f"/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/build/bin/FeatureExtraction -f {video_files[i]} -of {output_files[i]}"
     subprocess.run(command, shell=True)
     
     # Load the OpenFace output file into a list of dictionaries and calculate variance
-    with open(f'processed/{output_files[i]}', 'r') as f:
+    with open(f'/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/processed/{output_files[i]}', 'r') as f:
         reader = csv.DictReader(f)
         data = list(reader)
 
@@ -45,14 +48,25 @@ for i in range(3):
             variances.append(0)
             # print(f"The variance of {au_r} when active is 0")
 
+# Convert the list to a DataFrame
+variances = pd.DataFrame([variances], columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
+
 # Make sure the input data is scaled in the same way as the training data was
-user_feats_scaled = StandardScaler().fit_transform([variances])
+user_feats_scaled = StandardScaler().fit_transform(variances)
+user_feats_scaled = pd.DataFrame(user_feats_scaled, columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
+
 
 # Make a prediction
 prediction = clf.predict(user_feats_scaled)
 
 # Output the result
 if prediction[0] == 1:
-    print("Trained model predicts that you have Parkinson's disease.")
+    result = {"prediction": 1, "message": "Trained model predicts that you have Parkinson's disease."}
 else:
-    print("Trained model predicts that you do not have Parkinson's disease.")
+    result = {"prediction": 0, "message": "Trained model predicts that you do not have Parkinson's disease."}
+
+# print(json.dumps(result), file=sys.stdout, flush=True)
+
+# Write the result to output.json
+with open('output.json', 'w') as f:
+    json.dump(result, f)

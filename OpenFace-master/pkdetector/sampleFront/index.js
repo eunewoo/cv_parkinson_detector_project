@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const multer  = require('multer');
 const upload = multer({ dest: 'uploads/' });
+const { exec } = require("child_process"); // Add this line
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,41 @@ app.post('/save-video', upload.single('video'), (req, res) => {
       res.sendStatus(500);
     } else {
       res.sendStatus(200);
+    }
+  });
+});
+
+app.post('/run-python', (req, res) => {
+  exec("python ../faceTest.py", (error, stdout, stderr) => {
+    if (error) {
+      console.log(`error: ${error.message}`);
+      res.sendStatus(500);
+    } else if (stderr && !stderr.startsWith("[ WARN")) {
+      console.log(`stderr: ${stderr}`);
+      res.sendStatus(500);
+    } else {
+      // Read the result from output.json
+      fs.readFile('output.json', 'utf8', (err, data) => {
+        if (err) {
+            console.log(`error: ${err}`);
+            res.sendStatus(500);
+        } else {
+            try {
+                const pythonResult = JSON.parse(data);
+                if (pythonResult.prediction === 1) {
+                  // handle prediction 1
+                  console.log('success king')
+                } else {
+                  // handle prediction 0
+                }
+                res.send(pythonResult.message); // send only the message
+            } catch (e) {
+                console.log("Parsing error: ", e);
+                res.sendStatus(500);
+            }
+        }
+    });
+    
     }
   });
 });
