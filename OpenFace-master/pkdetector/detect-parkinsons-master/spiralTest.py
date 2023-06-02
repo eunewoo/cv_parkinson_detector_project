@@ -18,7 +18,7 @@ model = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/O
 le = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/detect-parkinsons-master/label_encoder.pkl')
 
 # Load the new image and make the prediction
-new_image_path = '/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/spiralMe.png'
+new_image_path = '/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/spiralMe2.png'
 # print("[INFO] loading and preprocessing new image...")
 new_image = cv2.imread(new_image_path)
 new_image = cv2.cvtColor(new_image, cv2.COLOR_BGR2GRAY)

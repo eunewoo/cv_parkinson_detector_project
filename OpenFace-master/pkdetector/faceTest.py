@@ -49,21 +49,21 @@ for i in range(3):
             # print(f"The variance of {au_r} when active is 0")
 
 # Convert the list to a DataFrame
-variances = pd.DataFrame([variances], columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
+variances2 = pd.DataFrame([variances], columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
 
 # Make sure the input data is scaled in the same way as the training data was
-user_feats_scaled = StandardScaler().fit_transform(variances)
-user_feats_scaled = pd.DataFrame(user_feats_scaled, columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
+user_feats_scaled = StandardScaler().fit_transform(variances2)
+user_feats_scaled2 = pd.DataFrame(user_feats_scaled, columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
 
 
 # Make a prediction
-prediction = clf.predict(user_feats_scaled)
+prediction = clf.predict(user_feats_scaled2)
 
 # Output the result
 if prediction[0] == 1:
-    result = {"prediction": 1, "message": "Trained model predicts that you have Parkinson's disease."}
+    result = {"prediction": 1, "message": "Parkinson"}
 else:
-    result = {"prediction": 0, "message": "Trained model predicts that you do not have Parkinson's disease."}
+    result = {"prediction": 0, "message": "Not Parkinson"}
 
 # print(json.dumps(result), file=sys.stdout, flush=True)
 

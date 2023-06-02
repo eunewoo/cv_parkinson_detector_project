@@ -85,12 +85,12 @@ app.post('/run-python-2', (req, res) => {
         } else {
             try {
                 const pythonResult = JSON.parse(data);
-                if (pythonResult.prediction === 1) {
-                  // handle prediction 1
-                  console.log('success king')
-                } else {
-                  // handle prediction 0
-                }
+                // if (pythonResult.prediction === 1) {
+                //   // handle prediction 1
+                //   console.log('success king')
+                // } else {
+                //   // handle prediction 0
+                // }
                 res.send(pythonResult.message); // send only the message
             } catch (e) {
                 console.log("Parsing error: ", e);
