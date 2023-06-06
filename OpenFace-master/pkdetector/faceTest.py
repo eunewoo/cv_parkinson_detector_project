@@ -1,18 +1,19 @@
 # predict.py
 import joblib
-from sklearn.preprocessing import StandardScaler
 import csv
 import statistics
 import subprocess
 import pandas as pd
 import json
-import sys
 
 # Load the saved model
 clf = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/model.pkl')
 
+# Load the saved scaler
+scaler = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/scaler.pkl')
+
 # Ask for video file input
-video_files = ["uploads/smileMe.webm", "uploads/disgustMe.webm", "uploads/surpriseMe.webm"]
+video_files = ["/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/smileMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/disgustMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm"]
 
 # Define the AUs of interest
 aus_smile = [1, 6, 12]
@@ -26,7 +27,7 @@ variances = []
 for i in range(3):
     command = f"/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/build/bin/FeatureExtraction -f {video_files[i]} -of {output_files[i]}"
     subprocess.run(command, shell=True)
-    
+
     # Load the OpenFace output file into a list of dictionaries and calculate variance
     with open(f'/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/processed/{output_files[i]}', 'r') as f:
         reader = csv.DictReader(f)
@@ -43,29 +44,26 @@ for i in range(3):
         if len(active_frames) > 1:
             variance = statistics.variance(active_frames)
             variances.append(variance)
-            # print(f"The variance of {au_r} when active is {variance}")
         else:
             variances.append(0)
-            # print(f"The variance of {au_r} when active is 0")
 
 # Convert the list to a DataFrame
 variances2 = pd.DataFrame([variances], columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
 
-# Make sure the input data is scaled in the same way as the training data was
-user_feats_scaled = StandardScaler().fit_transform(variances2)
-user_feats_scaled2 = pd.DataFrame(user_feats_scaled, columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
-
+# Use the loaded scaler to transform the input data
+user_feats_scaled = scaler.transform(variances2)
 
 # Make a prediction
-prediction = clf.predict(user_feats_scaled2)
+print("Scaled input features:", user_feats_scaled)
+prediction = clf.predict(user_feats_scaled)
+print("Prediction:", prediction)
+
 
 # Output the result
 if prediction[0] == 1:
     result = {"prediction": 1, "message": "Parkinson"}
 else:
     result = {"prediction": 0, "message": "Not Parkinson"}
-
-# print(json.dumps(result), file=sys.stdout, flush=True)
 
 # Write the result to output.json
 with open('output.json', 'w') as f:

@@ -23,3 +23,12 @@ yarn-debug.log*
 yarn-error.log*
 
 *.cache 
+
+#parkinson input data
+/OpenFace-master/pkdetector/mySample/processed
+/OpenFace-master/pkdetector/mySample/uploads
+/OpenFace-master/pkdetector/mySample
+/OpenFace-master/pkdetector/processed
+/OpenFace-master/samples
+
+
