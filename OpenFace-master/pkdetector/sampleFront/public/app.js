@@ -68,7 +68,7 @@ captureButton.addEventListener('click', async () => {
       videoIndex++;
 
       if (videoIndex < videoNames.length) {
-        await new Promise(resolve => setTimeout(resolve, 5000));
+        await new Promise(resolve => setTimeout(resolve, 9000));
         mediaRecorder.start();
       }
     };

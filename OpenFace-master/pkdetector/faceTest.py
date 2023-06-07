@@ -7,13 +7,13 @@ import pandas as pd
 import json
 
 # Load the saved model
-clf = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/model.pkl')
+clf = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/model.pkl')
 
 # Load the saved scaler
-scaler = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/scaler.pkl')
+scaler = joblib.load('/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/scaler.pkl')
 
 # Ask for video file input
-video_files = ["/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/smileMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/disgustMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm"]
+video_files = ["/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/uploads/smileMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/uploads/disgustMe.webm", "/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm"]
 
 # Define the AUs of interest
 aus_smile = [1, 6, 12]
@@ -25,11 +25,11 @@ output_files = ['smile.csv', 'disgusted.csv', 'surprised.csv']
 # Run the FeatureExtraction command for each video
 variances = []
 for i in range(3):
-    command = f"/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/build/bin/FeatureExtraction -f {video_files[i]} -of {output_files[i]}"
+    command = f"/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/build/bin/FeatureExtraction -f {video_files[i]} -of {output_files[i]}"
     subprocess.run(command, shell=True)
 
     # Load the OpenFace output file into a list of dictionaries and calculate variance
-    with open(f'/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/sampleFront/processed/{output_files[i]}', 'r') as f:
+    with open(f'/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/processed/{output_files[i]}', 'r') as f:
         reader = csv.DictReader(f)
         data = list(reader)
 
@@ -49,6 +49,7 @@ for i in range(3):
 
 # Convert the list to a DataFrame
 variances2 = pd.DataFrame([variances], columns=['AU_01_t12', 'AU_06_t12', 'AU_12_t12', 'AU_04_t13', 'AU_07_t13', 'AU_09_t13', 'AU_01_t14', 'AU_02_t14', 'AU_04_t14'])
+print("variance", variances)
 
 # Use the loaded scaler to transform the input data
 user_feats_scaled = scaler.transform(variances2)

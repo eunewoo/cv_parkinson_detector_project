@@ -1,0 +1,13 @@
+Input:/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm
+Input full path:/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/sampleFront/uploads/surpriseMe.webm
+Camera parameters:500,500,320,240
+Output HOG:surprised.hog
+Output video:surprised.avi
+Output aligned directory:surprised_aligned
+Output csv:surprised.csv
+Gaze: 1
+AUs: 1
+Landmarks 2D: 1
+Landmarks 3D: 1
+Pose: 1
+Shape parameters: 1

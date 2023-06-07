@@ -32,8 +32,8 @@ def load_split(path):
 
     return (np.array(data), np.array(labels))
 
-trainingPath = '/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/detect-parkinsons-master/dataset/spiral/training/'
-testingPath = '/Users/eunewoo/Desktop/2023Spring/CSE327/diary30_327front/OpenFace-master/pkdetector/detect-parkinsons-master/dataset/spiral/testing/'
+trainingPath = '/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/detect-parkinsons-master/dataset/spiral/training/'
+testingPath = '/Users/eunewoo/Desktop/2023Spring/CSE327/cv_parkinson_detector_project/OpenFace-master/pkdetector/detect-parkinsons-master/dataset/spiral/testing/'
 
 print("[INFO] loading data...")
 (trainX, trainY) = load_split(trainingPath)
