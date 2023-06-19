@@ -30,5 +30,6 @@ yarn-error.log*
 /OpenFace-master/pkdetector/mySample
 /OpenFace-master/pkdetector/processed
 /OpenFace-master/samples
-
+/OpenFace-master/pkdetector/sampleFront/processed
+/OpenFace-master/pkdetector/sampleFront/uploads
 
