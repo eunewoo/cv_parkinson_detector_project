@@ -36,7 +36,10 @@ https://drive.google.com/file/d/1Ll-PT0KzPQcVr2Xtlm6WJOSh7QuRaFwO/view?usp=shari
 
 # Copyrihgt/Reference
 OpenFace: https://github.com/TadasBaltrusaitis/OpenFace
+
 Facial-analyze: https://github.com/mali7/PARK_facial_mimic
+
 Spiral-drawing1: https://github.com/rohitdubey03/detect-parkinsons
+
 Sprial-drawing2: https://github.com/rylp/Parkinsons-Disease-Detection
 
